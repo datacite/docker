@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  search:
+    env_file:
+      - .env
+    image: datacite1/doi-metadata-search
+    ports:
+      - "8000:80"
+  assets:
+    env_file:
+      - .env
+    image: datacite1/segugio
+    ports:
+      - "8010:4567"
+  schema:
+    env_file:
+      - .env
+    image: datacite1/schema
+    ports:
+      - "8020:4567"
+  blog:
+    image: datacite1/blog
+    ports:
+      - "8030:4567"
+  db:
+    env_file:
+      - .env
+    image: mysql:5.6
+  redis:
+    image: redis:2.8
