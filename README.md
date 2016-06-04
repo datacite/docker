@@ -11,12 +11,12 @@ You probably want to customize `.env`.
 
 ### Supported services
 
-* [DataCite Labs Search](https://search.labs.datacite.org)
-* [DataCite Labs Schema](https://schema.labs.datacite.org)
-* [DataCite Blog](https://blog.datacite.org)
-* [DataCite Assets](https://assets.datacite.org)
+* [Labs Search](https://search.labs.datacite.org): http://localhost:8000
+* [Assets](https://assets.datacite.org): http://localhost:8010
+* [Labs Schema](https://schema.labs.datacite.org): http://localhost:8020
+* [Blog](https://blog.datacite.org): http://localhost:8030
 
-We are also running the following services for persistent storage
+We are also running the following services for persistent storage, using the official Docker containers:
 
 * MySQL (5.6)
 * Redis (2.8)

@@ -22,7 +22,7 @@ services:
   blog:
     image: datacite1/blog
     ports:
-      - "8030:4567"
+      - "8030:4000"
   db:
     env_file:
       - .env
