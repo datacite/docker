@@ -19,7 +19,7 @@ You probably want to customize `.env`. The list of variables in `.env.example` i
 * [Event Data](https://eventdata.datacite.org): http://localhost:8050
 * [Homepage](https://www.datacite.org): http://localhost:8060
 * [Profiles](https://profiles.datacite.org): http://localhost:8080
-* [Labs Schema](https://schema.labs.datacite.org): http://localhost:8020
+* [Schema](https://schema.labs.datacite.org): http://localhost:8020
 * [Search](https://search.datacite.org): http://localhost:8000
 
 We are also running the following services for persistent storage, using the official Docker containers:
