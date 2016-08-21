@@ -1,31 +1,100 @@
 version: '2'
 
 services:
+  homepage:
+    env_file: .env
+    image: datacite/homepage
+    ports:
+      - "8060:4567"
+    networks:
+      - public
   search:
-    env_file:
-      - .env
-    image: datacite1/doi-metadata-search
+    env_file: .env.search
+    image: crosscite/doi-metadata-search
     ports:
       - "8000:80"
+    networks:
+      - public
   assets:
-    env_file:
-      - .env
-    image: datacite1/segugio
+    env_file: .env
+    image: datacite/segugio
     ports:
       - "8010:4567"
+    networks:
+      - public
   schema:
-    env_file:
-      - .env
-    image: datacite1/schema
+    env_file: .env
+    image: datacite/schema:labs
     ports:
       - "8020:4567"
+    networks:
+      - public
   blog:
-    image: datacite1/blog
+    image: datacite/blog
     ports:
-      - "8030:4000"
+      - "8030:8030"
+    networks:
+      - public
+  api:
+    env_file: .env.api
+    image: datacite/spinone
+    ports:
+      - "8040:80"
+    networks:
+      - public
+  eventdata:
+    env_file: .env.eventdata
+    image: lagotto/lagotto:5-1-unstable
+    ports:
+      - "8050:80"
+    networks:
+      - public
+  dlm:
+    env_file: .env.dlm
+    image: lagotto/lagotto:4-5-stable
+    ports:
+      - "8055:80"
+    networks:
+      - public
+  profiles:
+    env_file: .env.profiles
+    image: datacite/volpino
+    ports:
+      - "8080:80"
+    networks:
+      - public
+  bot:
+    env_file: .env.bot
+    image: datacite/lita
+    ports:
+      - "9000:8080"
+    networks:
+      - public
+  data:
+    env_file: .env
+    image: datacite/content-resolver
+    ports:
+      - "8070:8080"
+    networks:
+      - public
+    volumes:
+      - ~/.m2:/root/.m2
   db:
-    env_file:
-      - .env
+    env_file: .env
     image: mysql:5.6
+    ports:
+      - "3307:3306"
+    networks:
+      - public
   redis:
     image: redis:2.8
+    networks:
+      - public
+networks:
+  public:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 10.0.10.0/24
+        gateway: 10.0.10.1

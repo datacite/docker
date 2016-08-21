@@ -16,3 +16,4 @@ log/*
 !.env.travis
 *.box
 output-*
+docker-compose.override.yml
