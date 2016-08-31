@@ -29,6 +29,13 @@ services:
       - "8020:4567"
     networks:
       - public
+  stats:
+    env_file: .env.stats
+    image: datacite/stats-portal
+    ports:
+      - "9010:4567"
+    networks:
+      - public
   blog:
     image: datacite/blog
     ports:
