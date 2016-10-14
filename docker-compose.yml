@@ -86,6 +86,13 @@ services:
       - public
     volumes:
       - ~/.m2:/root/.m2
+  citation:
+    env_file: .env.citation
+    image: crosscite/citeproc-doi-server
+    ports:
+      - "9020:80"
+    networks:
+      - public
   db:
     env_file: .env
     image: mysql:5.6
@@ -95,6 +102,10 @@ services:
       - public
   redis:
     image: redis:2.8
+    networks:
+      - public
+  memcached:
+    image: memcached:1.4.31
     networks:
       - public
 networks:
